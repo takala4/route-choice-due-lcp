@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.ruff_cache/
+.pytest_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Experiment outputs
+examples/output/
+
+# Gurobi
+gurobi.log
