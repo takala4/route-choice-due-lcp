@@ -104,5 +104,14 @@ class NetworkData:
     def link_index(self, tail: int, head: int) -> int:
         return self._index[(tail, head)]
 
+    def tau_hat_steps(self, link: Link) -> int:
+        """Free-flow travel time of `link` rounded to whole time steps (>= 1)."""
+        steps = int(round(link.tau_hat / self.dt))
+        if steps <= 0:
+            raise ValueError(
+                f"link {link.key}: tau_hat={link.tau_hat} < dt={self.dt}; choose finer dt"
+            )
+        return steps
+
     def total_demand(self) -> float:
         return sum(float(arr.sum()) * self.dt for arr in self.demand.values())
