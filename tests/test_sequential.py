@@ -5,15 +5,15 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from due_lcp.lp_backend import gurobi_available
-from due_lcp.networks import grid, serial_chain, wakui_5node
-from due_lcp.one_to_many import (
+from rcdue.lp_backend import gurobi_available
+from rcdue.networks import grid, serial_chain, wakui_5node
+from rcdue.one_to_many import (
     check_bulk_result,
     check_sequential_result,
     fw_solver,
     solve_sequential,
 )
-from due_lcp.one_to_many.lcp_builder import build_lcp
+from rcdue.one_to_many.lcp_builder import build_lcp
 
 BACKENDS = ["highs"] + (["gurobi"] if gurobi_available() else [])
 

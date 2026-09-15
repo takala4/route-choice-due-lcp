@@ -148,7 +148,7 @@ def build_world(
     net: NetworkData,
     cfg: UXsimConfig,
     *,
-    name: str = "due_lcp",
+    name: str = "rcdue",
     seed: int = 0,
     route_choice_principle: str = "homogeneous_DUO",
 ):

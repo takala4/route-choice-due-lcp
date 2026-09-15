@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite both the software and the paper below."
-title: "due-lcp: dynamic user equilibrium assignment via linear complementarity"
+title: "route-choice-due-lcp: route-choice dynamic user equilibrium via linear complementarity"
 version: 0.1.0
 date-released: "2026-09-15"
 license: MIT
@@ -8,7 +8,7 @@ authors:
   - family-names: Sakai
     given-names: Takara
     affiliation: "Department of Civil and Environmental Engineering, Institute of Science Tokyo"
-repository-code: "https://github.com/takara-sakai/due-lcp"
+repository-code: "https://github.com/takara-sakai/route-choice-due-lcp"
 preferred-citation:
   type: article
   title: "Efficient algorithm for solving dynamic user equilibrium traffic assignment"

@@ -1,7 +1,8 @@
-# due-lcp
+# route-choice-due-lcp
 
-Dynamic user equilibrium (DUE) traffic assignment on point-queue networks,
-solved through its linear complementarity formulation.
+Route-choice dynamic user equilibrium (DUE) traffic assignment on point-queue
+networks, solved through its linear complementarity formulation. The Python
+package is imported as `rcdue`.
 
 The package is a reference implementation of the time-decomposed algorithm of
 
@@ -24,7 +25,7 @@ can share them.
 ## Installation
 
 ```bash
-pip install -e .                 # core: numpy, scipy (HiGHS LP backend)
+pip install -e .                 # core: numpy, scipy (HiGHS LP backend); import as rcdue
 pip install -e ".[uxsim,plot]"   # + UXsim comparison and figures
 pip install -e ".[gurobi]"       # + Gurobi backend (licence required)
 pip install -e ".[dev]"          # + pytest, ruff, matplotlib
@@ -38,8 +39,8 @@ large networks. Results are identical up to solver tolerance.
 ## Quick start
 
 ```python
-from due_lcp.networks import wakui_5node
-from due_lcp.one_to_many import solve_sequential, check_sequential_result
+from rcdue.networks import wakui_5node
+from rcdue.one_to_many import solve_sequential, check_sequential_result
 
 net = wakui_5node()                       # paper's 5-node example
 res = solve_sequential(net, eps=1e-8)     # PD / ZD algorithm, backend="auto"
@@ -55,7 +56,7 @@ Build your own network with `NetworkData` and `Link`:
 
 ```python
 import numpy as np
-from due_lcp import Link, NetworkData
+from rcdue import Link, NetworkData
 
 q = np.zeros(40); q[:8] = 20.0            # departure rate per step toward node 3
 net = NetworkData(
@@ -69,7 +70,7 @@ net = NetworkData(
 
 ## What is implemented
 
-`due_lcp.one_to_many.sequential` follows Section 4 of the paper step by step:
+`rcdue.one_to_many.sequential` follows Section 4 of the paper step by step:
 
 | Paper | Code |
 |---|---|
@@ -80,7 +81,7 @@ net = NetworkData(
 | Step 5, reconciliation (Appendix III) | `_dijkstra_rewrite(base_shift=0)` |
 | ZD algorithm (queue decay `ds - d_v`) | `_dijkstra_rewrite(base_shift=ds)` |
 
-`due_lcp.one_to_many.verify.check_solution(net, w, y, pi, pi_nodes)` re-implements
+`rcdue.one_to_many.verify.check_solution(net, w, y, pi, pi_nodes)` re-implements
 the residuals and the shortest-path search independently of the solver and
 reports, per condition, the worst violation over all steps:
 
@@ -103,7 +104,7 @@ are not physically consistent.
 python examples/uxsim_fair_comparison.py --out examples/output --due-iters 50 --seeds 0 1 2
 ```
 
-The bridge (`due_lcp.uxsim_bridge`) keeps the comparison fair in four ways:
+The bridge (`rcdue.uxsim_bridge`) keeps the comparison fair in four ways:
 
 1. **Same input.** Demand is quantized to multiples of UXsim's platoon size
    and the quantized network is given to both solvers.

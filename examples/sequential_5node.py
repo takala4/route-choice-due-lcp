@@ -11,9 +11,9 @@ import time
 
 import numpy as np
 
-from due_lcp.networks import wakui_5node
-from due_lcp.one_to_many import check_sequential_result, fw_solver, solve_sequential
-from due_lcp.one_to_many.lcp_builder import build_lcp
+from rcdue.networks import wakui_5node
+from rcdue.one_to_many import check_sequential_result, fw_solver, solve_sequential
+from rcdue.one_to_many.lcp_builder import build_lcp
 
 
 def main() -> None:

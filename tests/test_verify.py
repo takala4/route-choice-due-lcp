@@ -4,15 +4,15 @@ from __future__ import annotations
 
 import numpy as np
 
-from due_lcp.networks import grid, serial_chain
-from due_lcp.one_to_many import (
+from rcdue.networks import grid, serial_chain
+from rcdue.one_to_many import (
     check_bulk_result,
     check_solution,
     excess_travel_time,
     fw_solver,
     solve_sequential,
 )
-from due_lcp.one_to_many.lcp_builder import build_lcp
+from rcdue.one_to_many.lcp_builder import build_lcp
 
 
 def test_naive_zd_rule_is_rejected():

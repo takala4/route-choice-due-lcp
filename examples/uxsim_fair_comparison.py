@@ -1,6 +1,6 @@
 """Like-for-like comparison of DUE-LCP against UXsim DUO and UXsim DUE.
 
-Requires the optional dependencies:  pip install "due-lcp[uxsim,plot]"
+Requires the optional dependencies:  pip install ".[uxsim,plot]"
 
 Pipeline
   1. Build the 5-node network of Wakui-Sakai-Akamatsu (2023) and quantize
@@ -32,14 +32,14 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
-from due_lcp.networks import wakui_5node
-from due_lcp.one_to_many import (
+from rcdue.networks import wakui_5node
+from rcdue.one_to_many import (
     check_sequential_result,
     check_solution,
     excess_travel_time,
     solve_sequential,
 )
-from due_lcp.uxsim_bridge import (
+from rcdue.uxsim_bridge import (
     UXsimConfig,
     UXsimSolution,
     enumerate_routes,

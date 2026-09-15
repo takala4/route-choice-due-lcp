@@ -1,19 +1,11 @@
 [project]
-name = "due-lcp"
+name = "route-choice-due-lcp"
 version = "0.1.0"
-description = "Dynamic user equilibrium traffic assignment via linear complementarity (Wakui-Sakai-Akamatsu 2023), with an independent equilibrium checker and a UXsim comparison bridge"
+description = "Route-choice dynamic user equilibrium (DUE) assignment on point-queue networks via linear complementarity (Wakui, Sakai and Akamatsu 2023), with an independent equilibrium checker and a UXsim comparison bridge"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 authors = [{ name = "Takara Sakai" }]
-keywords = ["dynamic user equilibrium", "traffic assignment", "linear complementarity", "point queue", "UXsim"]
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering",
-]
 dependencies = [
     "numpy>=1.24",
     "scipy>=1.11",
@@ -27,7 +19,7 @@ test = ["pytest>=7"]
 dev = ["pytest>=7", "ruff>=0.4", "matplotlib>=3.7"]
 
 [project.urls]
-Repository = "https://github.com/takara-sakai/due-lcp"
+Repository = "https://github.com/takara-sakai/route-choice-due-lcp"
 
 [build-system]
 requires = ["setuptools>=61"]
@@ -47,4 +39,4 @@ target-version = "py310"
 select = ["E", "W", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["due_lcp"]
+known-first-party = ["rcdue"]

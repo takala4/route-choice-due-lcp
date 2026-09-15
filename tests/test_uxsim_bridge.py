@@ -7,9 +7,9 @@ import pytest
 
 uxsim = pytest.importorskip("uxsim")
 
-from due_lcp.networks import serial_chain, wakui_5node  # noqa: E402
-from due_lcp.one_to_many import check_solution, solve_sequential  # noqa: E402
-from due_lcp.uxsim_bridge import (  # noqa: E402
+from rcdue.networks import serial_chain, wakui_5node  # noqa: E402
+from rcdue.one_to_many import check_solution, solve_sequential  # noqa: E402
+from rcdue.uxsim_bridge import (  # noqa: E402
     LinkLogs,
     UXsimConfig,
     enumerate_routes,
