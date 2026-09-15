@@ -28,7 +28,7 @@ can share them.
 pip install -e .                 # core: numpy, scipy (HiGHS LP backend); import as rcdue
 pip install -e ".[uxsim,plot]"   # + UXsim comparison and figures
 pip install -e ".[gurobi]"       # + Gurobi backend (licence required)
-pip install -e ".[dev]"          # + pytest, ruff, matplotlib
+pip install -e ".[dev]"          # + pytest, ruff, matplotlib, jupyter
 ```
 
 The LP sub-problems are solved with HiGHS (via `scipy.optimize.linprog`) by
@@ -98,11 +98,18 @@ one LCP is kept as a reference for small networks. It is not part of the paper
 and does not perform Step 5, so it may return equilibria whose off-path `pi`
 are not physically consistent.
 
-## Comparing with UXsim
+## Examples (notebooks)
 
-```bash
-python examples/uxsim_fair_comparison.py --out examples/output --due-iters 50 --seeds 0 1 2
-```
+* `examples/01_sequential_5node.ipynb`: solve the paper's 5-node example, verify it,
+  and draw the paper's figures (cumulative curves at the bottlenecks, route-choice
+  equilibrium per OD pair).
+* `examples/02_uxsim_fair_comparison.ipynb`: like-for-like comparison with UXsim
+  DUO and UXsim's day-to-day DUE (requires `pip install -e ".[uxsim,plot]"`).
+
+The notebooks are committed with their outputs; figure helpers live in
+`rcdue.plotting`.
+
+## Comparing with UXsim
 
 The bridge (`rcdue.uxsim_bridge`) keeps the comparison fair in four ways:
 
@@ -118,10 +125,10 @@ The bridge (`rcdue.uxsim_bridge`) keeps the comparison fair in four ways:
 4. **Same aggregates.** Total travel time, link volumes, route travel times
    and wall-clock time are computed with one set of formulas.
 
-The script writes `results.json` and figures: link volumes, total travel time,
-equilibrium residuals, day-to-day convergence of UXsim's DUE solver, and
-paper-style route-equilibrium plots (route travel times with bands marking the
-departure steps on which each route carries flow).
+The notebook shows link volumes, total travel time, equilibrium residuals,
+the day-to-day convergence of UXsim's DUE solver, and paper-style
+route-equilibrium plots (route travel times with bands marking the departure
+steps on which each route carries flow) for every method side by side.
 
 ## Tests
 

@@ -19,8 +19,11 @@ jobs:
       - name: Install
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[test,uxsim]" ruff
+          pip install -e ".[dev]"
       - name: Lint
         run: ruff check . && ruff format --check .
       - name: Test (HiGHS backend; Gurobi tests are skipped without a licence)
         run: pytest -q
+      - name: Execute example notebooks
+        run: |
+          jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1200             --output-dir /tmp/nb examples/01_sequential_5node.ipynb examples/02_uxsim_fair_comparison.ipynb
