@@ -25,14 +25,27 @@ def wakui_5node(
     demand_pulse_end: float = 30.0,
     total_to_4: float = 320.0,
     total_to_5: float = 320.0,
+    profile: str = "triangular",
 ) -> NetworkData:
     """5-node, 6-link test network of Wakui, Sakai and Akamatsu (2023), Fig. 1.
 
     Origin 1, destinations 4 and 5.  Default settings reproduce the paper's
     preliminary experiment: horizon 60, ds = 1, 320 users to each
-    destination as a triangular pulse over [0, 30].
+    destination as a triangular pulse over [0, 30].  ``profile`` may also be
+    ``"rectangular"`` (constant rate over the pulse).
     """
     T = int(round(horizon / dt))
+    if profile == "triangular":
+        q4 = triangular_demand(T, dt, demand_pulse_end, total_to_4)
+        q5 = triangular_demand(T, dt, demand_pulse_end, total_to_5)
+    elif profile == "rectangular":
+        steps = int(round(demand_pulse_end / dt))
+        q4 = np.zeros(T)
+        q5 = np.zeros(T)
+        q4[:steps] = total_to_4 / demand_pulse_end
+        q5[:steps] = total_to_5 / demand_pulse_end
+    else:
+        raise ValueError(f"unknown profile: {profile!r}")
     return NetworkData(
         nodes=[1, 2, 3, 4, 5],
         origin=1,
@@ -47,10 +60,7 @@ def wakui_5node(
         ],
         dt=dt,
         T=T,
-        demand={
-            4: triangular_demand(T, dt, demand_pulse_end, total_to_4),
-            5: triangular_demand(T, dt, demand_pulse_end, total_to_5),
-        },
+        demand={4: q4, 5: q5},
     )
 
 
