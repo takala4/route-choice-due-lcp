@@ -8,7 +8,7 @@ authors:
   - family-names: Sakai
     given-names: Takara
     affiliation: "Department of Civil and Environmental Engineering, Institute of Science Tokyo"
-repository-code: "https://github.com/takara-sakai/route-choice-due-lcp"
+repository-code: "https://github.com/takala4/route-choice-due-lcp"
 preferred-citation:
   type: article
   title: "Efficient algorithm for solving dynamic user equilibrium traffic assignment"
