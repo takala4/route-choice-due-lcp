@@ -109,7 +109,8 @@ class NetworkData:
         steps = int(round(link.tau_hat / self.dt))
         if steps <= 0:
             raise ValueError(
-                f"link {link.key}: tau_hat={link.tau_hat} < dt={self.dt}; choose finer dt"
+                f"link {link.key}: tau_hat={link.tau_hat} < dt={self.dt};"
+                " choose a finer dt"
             )
         return steps
 
